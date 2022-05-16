@@ -28,7 +28,7 @@ const Form = () => {
     const handleSubmit = (e, value) => {
         e.preventDefault();
 
-        axios.post(`http://127.0.0.1:8000/api/post`, {
+        axios.post(`${process.env.REACT_APP_BASE_URL}/post`, {
             title: posts.title,
             content: posts.content,
             category: posts.category,

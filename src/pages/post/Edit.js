@@ -26,7 +26,7 @@ const Form = () => {
         e.preventDefault();
 
         const id = params.id;
-        axios.post(`http://127.0.0.1:8000/api/post/${id}`, {
+        axios.post(`${process.env.REACT_APP_BASE_URL}/post/${id}`, {
             title: posts.title,
             content: posts.content,
             category: posts.category,
@@ -44,7 +44,7 @@ const Form = () => {
     }
 
     useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/api/post/${params.id}`)
+        axios.get(`${process.env.REACT_APP_BASE_URL}/post/${params.id}`)
         .then(res => {
             setPosts({
                 title: res.data.title,

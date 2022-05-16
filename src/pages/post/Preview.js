@@ -9,7 +9,7 @@ const Table = () => {
     const [post, setPost] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/api/post/publish/5/0`)
+        axios.get(`${process.env.REACT_APP_BASE_URL}/post/publish/5/0`)
         .then(res => {
             setPost(res.data.data)
         })

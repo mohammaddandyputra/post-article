@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
-import ReactPaginate from "react-paginate";
 
 import Sidebar from "../../components/Sidebar";
 
@@ -14,21 +13,21 @@ const Table = () => {
     const [countStatus, setCountStatus] = useState(0)
 
     useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/api/post`)
+        axios.get(`${process.env.REACT_APP_BASE_URL}/post`)
         .then(res => {
             setCountStatus(res.data)
         })
     }, []);
 
     useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/api/post/${paginate}/0`)
+        axios.get(`${process.env.REACT_APP_BASE_URL}/post/${paginate}/0`)
         .then(res => {
             setPost(res.data.data)
         })
     }, []);
 
     const handleFilterSubmit = (e, status) => {
-        axios.get(`http://127.0.0.1:8000/api/post/filter/${status}/${paginate}/0`)
+        axios.get(`${process.env.REACT_APP_BASE_URL}/post/filter/${status}/${paginate}/0`)
         .then(res => {
             setPost(res.data.data)
         })
@@ -46,7 +45,7 @@ const Table = () => {
         })
         .then((willDelete) => {
             if (willDelete) {
-                axios.post(`http://127.0.0.1:8000/api/post/trash/${id}`)
+                axios.post(`${process.env.REACT_APP_BASE_URL}/post/trash/${id}`)
                 .then(res => {
                     swal(`${res.data.message}`, {
                         icon: "success",
